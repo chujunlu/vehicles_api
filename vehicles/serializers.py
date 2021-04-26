@@ -29,3 +29,9 @@ class BoatSerializer(serializers.ModelSerializer):
                     'length', 'width', 'hin', 'current_hours',
                     'service_interval', 'next_service')
 
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'username')

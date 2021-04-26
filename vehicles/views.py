@@ -1,7 +1,9 @@
+from django.contrib.auth.models import User
 from rest_framework import generics
+
 from .models import Car, Truck, Boat
 from .serializers import (CarSerializer, TruckSerializer,
-                        BoatSerializer)
+                        BoatSerializer, UserSerializer)
 
 class CarList(generics.ListCreateAPIView):
     queryset = Car.objects.all()
@@ -32,3 +34,12 @@ class BoatDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Boat.objects.all()
     serializer_class = BoatSerializer
 
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
