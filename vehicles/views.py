@@ -1,9 +1,22 @@
 from django.contrib.auth.models import User
 from rest_framework import generics
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
 from .models import Car, Truck, Boat
 from .serializers import (CarSerializer, TruckSerializer,
                         BoatSerializer, UserSerializer)
+
+
+@api_view(['GET'])
+def api_root(request):
+    return Response({
+        'cars': reverse('car-list', request=request),
+        'trucks': reverse('truck-list', request=request),
+        'boats': reverse('boat-list', request=request),
+        'users': reverse('user-list', request=request)
+    })
 
 class CarList(generics.ListCreateAPIView):
     queryset = Car.objects.all()
